@@ -1,7 +1,9 @@
-# Applied_Statistics
+# JUNIA: Applied Biostatistics
 
 1. Study Designs
-https://docs.google.com/presentation/d/1a7BOUnE1HQmGqQQqG_hFocVEVgcDOvlJOK-q18hAbk0/edit#slide=id.g37ac8e6c3ba3845b_87
+
+[SAP](https://classic.clinicaltrials.gov/ProvidedDocs/88/NCT03574688/Prot_SAP_000.pdf)
+
 
 2. 
 3. 

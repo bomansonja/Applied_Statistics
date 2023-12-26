@@ -1,4 +1,3 @@
-
 ###Welcome!
 #This is our first practical for how to transform data for statistical 
 #analysis, and how to perform simple baseline statistics
@@ -9,7 +8,7 @@
 install.packages("plyr")
 
 #Now, you try: install the package called "scales"
-install.packages("scales")
+
 
 
 1.2
@@ -17,8 +16,8 @@ install.packages("scales")
 #function
 library(plyr)
 
-#Now, bring the package "scales" to this working environment
-library(scales)
+#Now, you try: bring the package "scales" to this working environment
+
 
 
 1.3
@@ -42,10 +41,10 @@ Participants <- read.delim('C:/Users/sonja/Documents/JUNIA_applied_biostatistics
 #Great!
 #Explore the data frame "Participants" with the following functions:
 str(Participants)
-colnames(Participants)
-nrow(Participants)
-ncol(Participants)
-summary(Participants)
+colnames()
+nrow()
+ncol()
+summary()
 
 
 2.2
@@ -55,7 +54,6 @@ summary(Participants$Height..cm...EUPATH_0010075.)
 
 
 #Examine the age of the participants enrolled using the summary() function
-summary(Participants$Age.at.enrollment..years...OBI_0003075.)
 
 
 2.3
@@ -66,7 +64,6 @@ unique(Participants$Medications.during.labor.and.delivery..EUPATH_0042212.)
 
 #Examine the different reasons for withdrawal from this study using the
 #unique() function
-unique(Participants$Reason.for.withdrawal..EUPATH_0000208.)
 
 
 2.4
@@ -80,8 +77,7 @@ View(Medications_used)
 #Let's do the same for the reasons for withdrawal. Use the count() function
 #and save it as a data frame with a name of your choosing using the "<-" function
 #View your data frame with the View() function
-Widrawal_reasons <- count(Participants$Reason.for.withdrawal..EUPATH_0000208.)
-View(Widrawal_reasons)
+
 
 
 
@@ -92,17 +88,17 @@ View(Widrawal_reasons)
 #they have placental malaria, 6) whether they had a low birth weight
 #and 7) the treatment arm they were part of.
 #Locate the columns we need with the colnames() function on the Participants data frame
-colnames(Participants)
+
 
 
 #Lets subset those columns into a separate "Characteristics" Data frame from the 
 #"Participants" data frame
 #You can subset data per column number, e.g. for column numbers 7 and 10:
-Characteristics <- Participants[,c(7,10,110,114,123,134,152)]
+Characteristics <- Participants[,c(7,10)]
 
 #Use the str() function to examine the data frame "Characteristics"
 #You should have 782 observations over 7 variables
-str(Characteristics)
+
 
 
 3.02
@@ -116,16 +112,12 @@ str(Characteristics)
 #Do this in two steps: 1) change Yes -> 1 and 2) No-> 0 in the whole data frame
 #Remember to convert your result into a data frame with the function
 #data.frame(), and save it as "Numerical_Data"
-Numerical_Data <- data.frame(lapply(Characteristics, function(x)
-{gsub("Yes", "1", x)}
-))
 
-Numerical_Data <- data.frame(lapply(Numerical_Data, function(x)
-{gsub("No", "0", x)}
-))
+
+
 
 #Lets check our dataframe "Numerical_Data" with the str() function
-str(Numerical_Data)
+
 
 
 3.03
@@ -136,8 +128,8 @@ str(Numerical_Data)
 #The data.frame() function
 #Remember! Only change the first 6 columns into numeric, and examine it through
 #the str() function
-Numerical_Data[,1:6] = data.frame(lapply(Numerical_Data[,1:6], function(x) as.numeric(x)))
-str(Numerical_Data)
+
+
 
 
 
@@ -146,8 +138,8 @@ str(Numerical_Data)
 #Now, we will split the data frame in half with the split() function
 #based on which drug each of the participants got assigned to
 #Split the data based on the study arm and name it as "split_list"
-split_list <- split(Numerical_Data, Numerical_Data$Study.arm..EUPATH_0015457.)
-str(split_list)
+
+
 
 
 3.05
@@ -160,8 +152,9 @@ str(split_list)
 #To access a first column of a dataframe you use dataframe[,1]
 #To access the first dataframe in a list, you use list[[1]]
 #Save the two dataframes in the list as DP_DF and SP_DF, respectively
-DP_DF<-split_list[[1]]
-SP_DF<-split_list[[2]]
+
+
+
 
 
 3.06
@@ -172,8 +165,8 @@ SP_DF<-split_list[[2]]
 #Remember to omit your missing values, and use the round() function to round
 #The means to 2 digits
 
-Means_DP <-round(colMeans(DP_DF[1:6], na.rm = T), digits = 2)
-Means_SP <-round(colMeans(SP_DF[1:6], na.rm = T), digits = 2)
+
+
 
 
 
@@ -181,27 +174,27 @@ Means_SP <-round(colMeans(SP_DF[1:6], na.rm = T), digits = 2)
 #We now have two vectors, which are Named numericals. Lets change those into
 #By using first making them a list with a as.list() function, then
 #data frames with the data.frame() function
-Means_DP <-as.data.frame(as.list(Means_DP))
-Means_SP <-as.data.frame(as.list(Means_SP))
+
+
 
 
 3.08
 #Let's name our observations of the means now using the rownames() function
 #So that we don't lose track of our data
-rownames(Means_DP) <- c("Monthly dihydroartemisinin–piperaquine group (n=349)")
-rownames(Means_SP) <- c("Monthly sulfadoxine–pyrimethamine group (n=338)")
+
+
 
 
 3.09
 #Let's make two dataframes into one "Means" dataframe by using the rbind() function
-Means <- rbind(Means_DP,Means_SP)
+
 
 
 3.10
 #Lets make our data horizontal instead of longitudinal
 #We will use the transpose t() function and save it as a data.frame()
 #as Means_DF
-Means_DF <- data.frame(t(Means))
+
 
 3.11
 #One way to calculate a proportions from dichotomous data is by calculating
@@ -210,12 +203,10 @@ Means_DF <- data.frame(t(Means))
 #Let's change those observations using the percent() function. 
 #Apply this function using the function lapply() on the 2,5 and 6 row of our
 #Means_DF dataframe
-Means_DF[c(2,5,6),] <- data.frame(lapply(Means_DF[c(2,5,6),], function(x)
-{scales::percent(x)}
-))
+
+
 
 
 3.12
 #Finally, we can rename our rows for presentation with the
-#rownames() and function
-rownames(Means_DF) <- c("Mean Age at Enrollment","Used Bednet Last Night","Gestational Age at Enrolment", "Height","Had Adverse Birth Outcome ","Had Placental Malaria")
+#rownames() function

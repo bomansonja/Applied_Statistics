@@ -19,6 +19,9 @@ YOu can check which version of mac os you have from the Apple menu in the upper-
 02) Multiple Correspondance Analysis
 
 [Principal Component Methods in R: Practical Guide](http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/114-mca-multiple-correspondence-analysis-in-r-essentials/)
+
 [Visualize MCA Results in R](https://rpkgs.datanovia.com/factoextra/reference/fviz_mca.html)
+
 [R Colours for Graphs Cheatsheet](https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf)
+
 [Theoretical Guide to MCA](https://personal.utdallas.edu/~herve/Abdi-MCA2007-pretty.pdf)
